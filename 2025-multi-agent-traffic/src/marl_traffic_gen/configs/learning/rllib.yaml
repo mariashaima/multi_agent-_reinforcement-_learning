@@ -1,0 +1,7 @@
+learning_kwargs:
+  iterations: 100
+  output_to_console: true
+
+loading_kwargs:
+  continue_learning_trained_agent: false
+  trained_agent_path: null

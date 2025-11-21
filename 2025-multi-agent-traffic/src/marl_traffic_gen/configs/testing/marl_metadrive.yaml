@@ -1,0 +1,46 @@
+policy:
+  policy_path: "/home/ransiek/2025-multi-agent-traffic/outputs/2025-07-30/07-58-32/logs/agents/PPOConfig_marl_policy"
+
+environment:
+  environment_id: "RLlibMultiAgentMetaDrive"
+  environment_kwargs:
+    multiprocessing: true
+    n_envs: 5
+    env_kwargs:
+      config:
+        use_render: false
+        map: SS
+        is_multi_agent: true
+        num_agents: 2
+        traffic_density: 0.0
+        allow_respawn: false
+        random_agent_model: false
+        crash_done: true
+        out_of_road_done: true
+        delay_done: 25
+        start_seed: 0
+        num_scenarios: 1
+        horizon: 1000
+        truncate_as_terminate: true
+        out_of_road_penalty: 5
+        crash_vehicle_penalty: 5
+        crash_object_penalty: 5
+        crash_vehicle_cost: 1
+        crash_object_cost: 1
+        out_of_road_cost: 2
+        success_reward: 10
+        crash_sidewalk_penalty: 2
+        agent_configs:
+          agent0:
+            vehicle_model: "static_default"
+            random_color: False
+            _specified_spawn_lane: True
+            spawn_longitude: 40.0
+            spawn_lateral: 7.0
+          agent1:
+            vehicle_model: "static_default"
+            random_color: False
+            _specified_spawn_lane: True
+            spawn_longitude: 15.0
+            spawn_lateral: 4.0
+        log_level: 50

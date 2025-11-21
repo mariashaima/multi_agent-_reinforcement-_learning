@@ -1,0 +1,27 @@
+defaults:
+  - agent: rllib/rllib_ppo
+  - environment: marl_metadrive
+  - learning: rllib
+  - testing: marl_metadrive
+  - _self_
+
+# Seeding
+seed: 0
+
+# Runtime Options
+learn: true
+
+# Training
+torch_device_name: cuda
+agent_name: marl_policy
+
+# Saving
+save: true
+
+# Testing
+test: false
+
+# Logging
+logging:
+  timestamp: ${now:%Y-%m-%d_%H-%M-%S}
+  tb_log_dir: logs/tensorboard/

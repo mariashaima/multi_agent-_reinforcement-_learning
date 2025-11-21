@@ -1,0 +1,118 @@
+agent_class: ${python:ray.rllib.algorithms.ppo.PPOConfig}
+agent_kwargs:
+  # Update the config objects's deep learning framework settings
+  framework:
+    # torch: PyTorch; tf2: TensorFlow 2.x; tf: TensorFlow (static-graph)
+    framework: torch
+    # Drop all tf-specific settings
+    eager_tracing: True
+    eager_max_retraces: 20
+    tf_session_args: {}
+    local_tf_session_args: {}
+
+  # Update the config objects's API stack settings
+  api_stack:
+    # Enables the usage of RLModule and Learner
+    enable_rl_module_and_learner: true
+    # Enables the usage of EnvRunners and Connector
+    enable_env_runner_and_connector_v2: true
+
+  # Update the config objects's rollout worker configuration
+  env_runners:
+    # Number of EnvRunner actors to create for parallel sampling
+    num_env_runners: 2
+    # Number of environments to step through (vector-wise) per EnvRunner
+    num_envs_per_env_runner: 1
+    # Number of CPUs to allocate per EnvRunner
+    num_cpus_per_env_runner: 1
+    # Number of GPUs to allocate per EnvRunner
+    num_gpus_per_env_runner: 0
+    # Divide episodes into fragments of this many steps during sampling. Set "auto" to match the batch size.
+    rollout_fragment_length: "auto"
+
+  # Update the config object's LearnerGroup and Learner worker related configurations
+  learners:
+    # Number of Learner workers used for updating the RLModule
+    num_learners: 0
+    # Number of CPUs allocated per Learner worker
+    num_cpus_per_learner: "auto"
+    # Number of GPUs allocated per Learner worker
+    num_gpus_per_learner: 1
+    # The number of aggregator actors per Learner
+    num_aggregator_actors_per_learner: 0
+
+  # Update the config object's training parameters
+  training:
+    # Float specifying the discount factor of the Markov Decision process
+    gamma: 0.99
+    # The learning rate
+    lr: 0.0003
+    # Train batch size per individual Learner worker
+    train_batch_size_per_learner: 2048
+    # Use a critic as a baseline
+    use_critic: true
+    # Use the Generalized Advantage Estimator (GAE) with a value function
+    use_gae: true
+    # The size of minibatches to use to further split the train batch into
+    minibatch_size: 128
+    # The number of complete passes over the entire train batch. Each pass might be further split into n minibatches
+    num_epochs: 30
+    # The lambda parameter for General Advantage Estimation (GAE)
+    lambda_: 0.95
+    # Whether to use the KL-term in the loss function
+    use_kl_loss: true
+    # Initial coefficient for KL divergence
+    kl_coeff: 0.2
+    # Target value for KL divergence
+    kl_target: 0.01
+    # Coefficient of the value function loss
+    vf_loss_coeff: 1.0
+    # The PPO clip parameter
+    clip_param: 0.2
+    # Clip param for the value function
+    vf_clip_param: 10.0
+    # The entropy coefficient
+    entropy_coeff: 0.0
+    # Clip the global norm of gradients by this amount
+    grad_clip: 0.5
+
+  # Update the config object's training parameters
+  callback:
+    # RLlibCallback class
+    callbacks_class: ${python:ray.rllib.callbacks.callbacks.RLlibCallback}
+
+  # Update the config object's evaluation settings
+  evaluation:
+    # Evaluate with every `evaluation_interval` training iterations
+    evaluation_interval: 5
+    # Duration for which to run evaluation each `evaluation_interval`
+    evaluation_duration: 10
+    # The unit, with which to count the evaluation duration ["episodes" or "timesteps"]
+    evaluation_duration_unit: episodes
+    # Run evaluation in parallel to the `Algorithm.training_step()` call, using threading
+    evaluation_parallel_to_training: false
+    # Pass extra args to evaluation env creator
+    evaluation_config:
+      # Disable exploration by computing deterministic actions
+      explore: false
+    # Number of parallel EnvRunners to use for evaluation
+    evaluation_num_env_runners: 0
+
+  # Update the config object's checkpointing settings
+  checkpointing:
+    # Checkpoints also contain native model files. Restore just the NN models from these files w/o requiring RLlib
+    export_native_model_files: true
+    # Only add Policies to the checkpoint that are trainable
+    checkpoint_trainable_policies_only: true
+
+  # Update the config object's debugging settings
+  debugging:
+    # Log level for the agent process and its workers
+    log_level: "WARN"
+    # Log system resource metrics to results
+    log_sys_usage: false
+    # Sets random seed of each worker, so that identically configured trials have identical results
+    seed: 0
+
+  # Update the config object's RLModule settings
+  # rl_module:

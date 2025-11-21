@@ -1,0 +1,19 @@
+environment_id: "RLlibMetaDriveEnv"
+environment_kwargs:
+  multiprocessing: true
+  n_envs: 5
+  env_kwargs:
+    config:
+      map: 3
+      random_lane_width: true
+      random_lane_num: true
+      discrete_action: false
+      discrete_throttle_dim: 7
+      discrete_steering_dim: 7
+      horizon: 1000
+      random_spawn_lane_index: False
+      num_scenarios: 1000
+      start_seed: 0
+      traffic_density: 0.0
+      accident_prob: 0
+      log_level: 50
