@@ -1,5 +1,5 @@
 policy:
-  policy_path: "/home/ransiek/2025-multi-agent-traffic/outputs/2025-07-30/07-58-32/logs/agents/PPOConfig_marl_policy"
+  policy_path: "c:maria/2025-multi-agent-traffic/outputs/2025-07-30/07-58-32/logs/agents/PPOConfig_marl_policy"
 
 environment:
   environment_id: "RLlibMultiAgentMetaDrive"
