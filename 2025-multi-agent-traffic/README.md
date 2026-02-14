@@ -147,6 +147,55 @@ Cut‑offs: Agents accelerate, overtake, and then re‑enter the lane directly i
 ![scenario_0](https://github.com/user-attachments/assets/f96a0a76-83e6-46cc-9b7d-995ade6ee4b5)
 
 Coordinate multi‑agent maneuvers
+Other Learned Adversarial Interactions
+Beyond rear‑end collisions, cut‑ins, and cut‑offs, the trained MARL agents developed several additional behaviors that increase scenario complexity and pressure on the ego vehicle:
+
+• Close‑Distance Following
+After training, agents consistently reduce the time‑headway to the ego vehicle, maintaining an unsafe following distance to provoke braking responses or hesitation. This behavior did not appear before training, when agents kept random or overly large gaps.
+
+• Deceleration to Manipulate the Ego Vehicle
+Trained agents strategically decelerate in front of the ego vehicle to force it into uncomfortable or risky situations. This includes:
+
+Gradual slowing to create congestion
+
+Forcing the ego vehicle to brake sharply
+
+Setting up opportunities for cut‑offs or rear‑end collisions
+
+Before training, deceleration was random and unrelated to ego‑vehicle positioning.
+
+• Sudden Braking
+Agents learned to apply abrupt braking when the ego vehicle is close behind. This creates high‑risk interactions such as:
+
+Near‑miss rear‑end collisions
+
+Emergency braking scenarios
+
+Forced evasive maneuvers
+
+This behavior emerges reliably only after training.
+
+• Off‑Road Crossing
+Trained agents occasionally exploit the map boundaries by briefly crossing into off‑road areas to reposition themselves for aggressive maneuvers. Examples include:
+
+Cutting across the shoulder to re‑enter directly in front of the ego vehicle
+
+Using off‑road shortcuts to overtake
+
+Creating unpredictable lateral motion
+
+Before training, off‑road behavior was accidental and not tactically motivated.
+
+• Aggressive Overtaking
+Agents learned to overtake the ego vehicle with minimal clearance, often combining:
+
+High‑speed approach
+
+Lateral lane change
+
+Immediate re‑entry into the ego lane
+
+This creates a realistic and challenging overtaking scenario that stresses perception and planning modules.
 Generalize to unseen roundabout scenarios
 
 The ego vehicle (IDM) exhibited:
