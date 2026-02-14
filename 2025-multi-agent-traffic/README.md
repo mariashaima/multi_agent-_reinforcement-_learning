@@ -24,7 +24,7 @@ Policy checkpointing & evaluation in both trained and unseen scenarios
 
 Generalization tests across different map structures
 
-📦 Project Structure
+**📦 Project Structure**
 Code
 ├── configs/                # Environment & PPO configuration files
 ├── env/                    # Custom MetaDrive multi-agent environment
