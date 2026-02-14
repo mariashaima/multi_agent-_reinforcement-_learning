@@ -25,15 +25,10 @@ Policy checkpointing & evaluation in both trained and unseen scenarios
 Generalization tests across different map structures
 
 **📦 Project Structure**
-Code
-├── configs/                # Environment & PPO configuration files
-├── env/                    # Custom MetaDrive multi-agent environment
-├── policies/               # Saved PPO checkpoints
-├── training/               # Training scripts (Ray RLlib)
-├── evaluation/             # Scenario evaluation scripts
-├── utils/                  # Helper functions (logging, plotting, etc.)
-└── README.md               # Project documentation
-🧠 Methodology Overview
+<img width="504" height="163" alt="image" src="https://github.com/user-attachments/assets/3ddebc57-5a4b-4b91-8b8a-274be2ab0d8b" />
+
+**🧠 Methodology Overview**
+
 1. Environment Setup
 Built on MetaDrive with procedural map generation
 
@@ -82,7 +77,7 @@ Measuring adversarial behavior consistency
 
 Visualizing trajectories & interactions
 
-🛠️ Installation
+**🛠️ Installation**
 1. Clone the repository
 bash
 git clone https://github.com/<your-username>/<repo-name>.git
@@ -106,7 +101,7 @@ NumPy / Pandas
 
 Matplotlib / Seaborn
 
-▶️ Training
+**▶️ Training**
 Run MARL training with PPO:
 
 bash
@@ -121,7 +116,7 @@ Train AGENT1 & AGENT2 adversarial policies
 
 Save checkpoints in policies/
 
-🎯 Evaluation
+**🎯 Evaluation**
 Evaluate trained policies:
 
 bash
@@ -130,15 +125,28 @@ You can enable rendering:
 
 bash
 --render True
-📊 Results Summary
+**📊 Results Summary**
 Trained MARL agents successfully learned to:
 
-Perform rear‑end collisions
+##Perform rear‑end collisions
+Before training, the traffic agents exhibited mostly random or non‑targeted behavior and rarely produced consistent rear‑end collisions with the ego vehicle.
 
-Execute cut‑ins and cut‑offs
+![demo](https://github.com/user-attachments/assets/1a7552b1-4c78-40f8-9a3f-e6d7bc54d61a)
+
+After training, the MARL agents learned to intentionally perform rear‑end collisions by closing the gap aggressively, maintaining high relative speed, and exploiting the ego vehicle’s conservative behavior.
+![scenario_0](https://github.com/user-attachments/assets/f2805e94-2e17-4cd0-9054-2ec6dbee99fa)
+
+**Execute cut‑ins and cut‑offs**
+Before training, the traffic agents behaved randomly and were unable to perform structured lateral maneuvers. Lane changes occurred sporadically, without awareness of the ego vehicle’s position or timing, resulting in unrealistic or non‑adversarial interactions.
+![demo](https://github.com/user-attachments/assets/b2335013-72ff-4f23-a86a-536c24962c46)
+
+After training, the MARL agents learned to execute deliberate and well‑timed cut‑ins and cut‑offs:
+Cut‑ins: Agents merge sharply into the ego vehicle’s lane with minimal headway, forcing the ego vehicle to brake or adjust its trajectory.
+Cut‑offs: Agents accelerate, overtake, and then re‑enter the lane directly in front of the ego vehicle, reducing time‑to‑collision and creating a high‑pressure scenario.
+
+![scenario_0](https://github.com/user-attachments/assets/f96a0a76-83e6-46cc-9b7d-995ade6ee4b5)
 
 Coordinate multi‑agent maneuvers
-
 Generalize to unseen roundabout scenarios
 
 The ego vehicle (IDM) exhibited:
