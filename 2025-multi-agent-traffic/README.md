@@ -1,4 +1,5 @@
-🚀 Key Features
+**🚀 Key Features**
+
 Multi‑Agent Reinforcement Learning (MARL) setup with PPO
 
 Adaptive adversarial traffic agents capable of:
